@@ -376,3 +376,15 @@ docker rm postgres front
 docker volume rm pgdata
 docker network rm exercice3_network
 ```
+
+## Exercice 4 - Conversion en Compose
+
+### Enoncé
+
+Reprendre les ressources créées dans l'exercice 3 et encapsuler le tout dans un fichier `compose.yaml`.
+
+Vous pouvez vous aider de la documentation officielle de [docker compose](https://docs.docker.com/reference/compose-file/).
+
+### Solution
+
+Voir le fichier [compose.yaml](./exercice4/compose.yaml)
