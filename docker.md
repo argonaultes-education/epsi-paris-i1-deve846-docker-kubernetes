@@ -138,3 +138,70 @@ Résultat attendu du client docker
 docker ps
 # => 1 container: postgres db and 1 temporary container client db
 ``` 
+
+#### Conteneur Serveur
+
+Créer un sous-réseau de type bridge
+
+```bash
+docker network create dind_network
+```
+
+Créer 2 volumes pour stocker les certificats à transmettre à notre client
+
+```bash
+docker volume create docker-certs-ca
+docker volume create docker-certs-client
+```
+
+
+```bash
+docker run --privileged --name dind -d --network dind_network --network-alias docker -e DOCKER_TLS_CERTDIR=/certs -v docker-certs-ca:/certs/ca -v docker-certs-client:/certs/client docker:dind
+```
+
+
+#### Conteneur Client
+
+Pour tester la communication en affichant la version du client et du serveur
+
+```bash
+docker run --rm --network dind_network -e DOCKER_TLS_CERTDIR=/certs -e DOCKER_HOST=tcp://docker:2376 -v docker-certs-client:/certs/client:ro docker:latest version
+```
+
+Pour vérifier la cohérence avec la version du serveur, exécuter la commande
+
+```bash
+docker exec dind docker -v
+```
+
+Pour démarrer un processus shell interactif avec le client docker correctement configuré
+
+```bash
+docker run -it --rm --network dind_network -e DOCKER_TLS_CERTDIR=/certs -e DOCKER_HOST=tcp://docker:2376 -v docker-certs-client:/certs/client:ro docker:latest sh
+```
+
+Pour retrouver un exemple de cas d'utilisation, voir l'[installation de Jenkins avec Docker](https://www.jenkins.io/doc/book/installing/docker/).
+
+Rajouter en tant que variable d'environnement
+
+```bash
+export DOCKER_TLS_VERIFY=1
+export DOCKER_CERT_PATH=/certs/client
+```
+
+Tester le lancement d'un processus interactif
+
+```bash
+docker exec -it awesome_yalow sh
+```
+
+Visualiser la liste des conteneurs actifs dans ce nouveau contexte
+
+```bash
+docker ps
+```
+
+
+Résumé de l'architecture
+
+![](./images/exercice2-dind.png)
