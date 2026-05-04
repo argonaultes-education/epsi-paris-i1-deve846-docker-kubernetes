@@ -196,12 +196,20 @@
     </mxGraphModel>
   </diagram>
   <diagram id="9OUmYIge6sjdrGPpmz9A" name="exercice3">
-    <mxGraphModel dx="645" dy="729" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="976" dy="729" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="ekrIfnKMJzRpvXGbPkDV-17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=4;dashed=1;" value="" vertex="1">
           <mxGeometry height="650" width="720" x="420" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ekrIfnKMJzRpvXGbPkDV-29" edge="1" parent="1" source="ekrIfnKMJzRpvXGbPkDV-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="ekrIfnKMJzRpvXGbPkDV-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ekrIfnKMJzRpvXGbPkDV-30" connectable="0" parent="ekrIfnKMJzRpvXGbPkDV-29" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="volume mounting read/write" vertex="1">
+          <mxGeometry relative="1" x="-0.3561" y="-4" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="ekrIfnKMJzRpvXGbPkDV-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" value="postgres db container#1" vertex="1">
           <mxGeometry height="130" width="150" x="970" y="210" as="geometry" />
@@ -251,7 +259,7 @@
         </mxCell>
         <mxCell id="ekrIfnKMJzRpvXGbPkDV-15" edge="1" parent="1" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fontSize=14;" target="ekrIfnKMJzRpvXGbPkDV-5" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="440" y="275" as="sourcePoint" />
+            <mxPoint x="360" y="275" as="sourcePoint" />
             <mxPoint x="1136" y="241" as="targetPoint" />
           </mxGeometry>
         </mxCell>
@@ -261,10 +269,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="ekrIfnKMJzRpvXGbPkDV-18" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="psql" vertex="1">
-          <mxGeometry height="60" width="120" x="280" y="245" as="geometry" />
+          <mxGeometry height="60" width="120" x="280" y="210" as="geometry" />
         </mxCell>
         <mxCell id="ekrIfnKMJzRpvXGbPkDV-19" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="dbeaver" vertex="1">
-          <mxGeometry height="60" width="120" x="280" y="330" as="geometry" />
+          <mxGeometry height="60" width="120" x="280" y="280" as="geometry" />
         </mxCell>
         <mxCell id="ekrIfnKMJzRpvXGbPkDV-21" edge="1" parent="1" source="ekrIfnKMJzRpvXGbPkDV-20" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="ekrIfnKMJzRpvXGbPkDV-5">
           <mxGeometry relative="1" as="geometry" />
@@ -279,6 +287,20 @@
         </mxCell>
         <mxCell id="ekrIfnKMJzRpvXGbPkDV-23" parent="1" style="sketch=0;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Docker.svg;" value="" vertex="1">
           <mxGeometry height="41" width="50" x="430" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="ekrIfnKMJzRpvXGbPkDV-26" edge="1" parent="1" source="ekrIfnKMJzRpvXGbPkDV-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;startArrow=classic;startFill=1;" target="ekrIfnKMJzRpvXGbPkDV-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ekrIfnKMJzRpvXGbPkDV-27" connectable="0" parent="ekrIfnKMJzRpvXGbPkDV-26" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="bind mounting read only" vertex="1">
+          <mxGeometry relative="1" x="0.0042" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ekrIfnKMJzRpvXGbPkDV-25" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" value="nginx.conf" vertex="1">
+          <mxGeometry height="60" width="79" x="698.5" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ekrIfnKMJzRpvXGbPkDV-28" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.folder;" value="data files" vertex="1">
+          <mxGeometry height="71" width="78" x="1006" y="64.5" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

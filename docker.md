@@ -214,7 +214,7 @@ Résumé de l'architecture
 
 Pour configurer le serveur nginx avec une redirection type stream, voir la [documentation officielle](https://nginx.org/en/docs/stream/ngx_stream_core_module.html).
 
-En résumén, cela revient à configurer le serveur avec le bloc de code suivant
+En résumé, cela revient à configurer le serveur avec le bloc de code suivant :
 
 ```
 stream {
@@ -232,8 +232,13 @@ stream {
 }
 ```
 
+Contraintes :
+
+* utiliser un bind mounting pour la configuration nginx
+* uitiliser un volume mounting pour les données de la base de données postgres
+
 ### Solution
 
-Aide : préparer la configuration nginx en amont et utiliser le bind-mounting
+Aide : préparer la [configuration nginx](https://hub.docker.com/_/nginx#customize-configuration) en amont et utiliser le bind-mounting
 
 Etapes à suivre
