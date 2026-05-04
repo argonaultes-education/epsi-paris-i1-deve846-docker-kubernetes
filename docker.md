@@ -1,5 +1,9 @@
 # Docker
 
+## Préparatifs
+
+Utilisation de l'extension `ms-azuretools.vscode-containers` dans Codium.
+
 ## Exercice 1 - Conteneur postgres
 
 ### Enoncé
