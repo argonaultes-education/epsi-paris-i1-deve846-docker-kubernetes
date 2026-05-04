@@ -388,3 +388,21 @@ Vous pouvez vous aider de la documentation officielle de [docker compose](https:
 ### Solution
 
 Voir le fichier [compose.yaml](./exercice4/compose.yaml)
+
+Appliquer le fichier `compose.yaml` avec la commande
+
+```bash
+docker compose up -d
+```
+
+Détruire l'ensemble des ressources, y compris les volumes avec la commande
+
+```bash
+docker compose down --volumes
+```
+
+Tester la connexion depuis un conteneur rattaché au sous-réseau de docker compose
+
+```bash
+docker run --rm -it --network exercice4_exercice4_network postgres:latest psql -h front -p 80 -U postgres
+```

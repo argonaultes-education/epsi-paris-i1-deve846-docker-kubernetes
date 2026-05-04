@@ -1,0 +1,28 @@
+name: exercice4
+
+services:
+
+  db:
+    image: postgres:latest
+    container_name: postgres
+    networks:
+      - exercice4_network
+    volumes:
+      - pgdata:/var/lib/postgresql/18/docker
+    environment:
+      - POSTGRES_PASSWORD=password
+
+  front:
+    image: nginx:latest
+    networks:
+      - exercice4_network
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+
+networks:
+  exercice4_network:
+
+volumes:
+  pgdata:
