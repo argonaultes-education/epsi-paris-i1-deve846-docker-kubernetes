@@ -205,3 +205,35 @@ docker ps
 Résumé de l'architecture
 
 ![](./images/exercice2-dind.png)
+
+## Exercice 3 - Redirection avec Nginx
+
+### Enoncé
+
+![](./images/exercice3.png)
+
+Pour configurer le serveur nginx avec une redirection type stream, voir la [documentation officielle](https://nginx.org/en/docs/stream/ngx_stream_core_module.html).
+
+En résumén, cela revient à configurer le serveur avec le bloc de code suivant
+
+```
+stream {
+
+    upstream database {
+       server db_host_ip_name:db_port;
+    }
+
+    server {
+        listen nginx_listening_port;
+        proxy_connect_timeout 1s;
+        proxy_timeout 3s;
+        proxy_pass database;
+    }
+}
+```
+
+### Solution
+
+Aide : préparer la configuration nginx en amont et utiliser le bind-mounting
+
+Etapes à suivre
