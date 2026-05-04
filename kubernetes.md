@@ -1,5 +1,11 @@
 # Kubernetes
 
+Les 3 fonctionnalités essentielles attendues rendues par un cluster Kubernetes :
+
+* self healing
+* automated rollback
+* automated scaling
+
 ## Exercice 1 - Installation d'un cluster en local
 
 
@@ -50,3 +56,74 @@ Lister les ressources présentes dans le cluster par défaut
 kubectl get pods -A
 ```
 
+Vue d'ensemble logique d'un cluster kubernetes
+
+![](https://kubernetes.io/images/docs/components-of-kubernetes.svg)
+
+## Exercice 2 - Créer notre premier pod
+
+```bash
+kubectl run nginx --image=nginx:latest --port=80
+```
+
+Lister les pods présents et leur état dans le cluster kubernetes
+
+```bash
+kubectl get pods
+```
+
+Lister tous les namespaces avec la commande
+
+```bash
+kubectl get namespace
+```
+
+Pour créer des ressources, utiliser l'une des méthodes suivantes :
+
+* impérative
+* déclarative
+
+Avec minikube, afficher le tableau de bord de supervision
+
+```bash
+minikube dashboard
+```
+
+Démarrer un nouveau processus interactif de shell (Se connecter) pour tenter d'arrêter le processus nginx.
+
+```bash
+kubectl exec nginx -c nginx -it -- bash
+```
+
+Détruire le pod
+
+```bash
+kubectl delete pod nginx
+kubectl delete pod/nginx
+```
+
+
+## Exercice 3 - Créer un pod dont le conteneur s'éteind au bout de x secondes
+
+## Exercice 4 - Self-Healing avec les déploiements
+
+Créer maintenant une ressource de type déploiement
+
+```bash
+kubectl create deployment nginx --image=nginx:latest
+```
+
+Faire varirer le nombre de pods associés à ce déploiement
+
+```bash
+kubectl scale deployment/nginx --replicas=2
+```
+
+## Fin
+
+Arrêter minikube et détruire les ressources associées
+
+```bash
+minikube stop
+minikube delete
+``` 
