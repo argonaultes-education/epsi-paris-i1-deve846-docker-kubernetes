@@ -106,3 +106,35 @@ Relancer la commande psql dans un nouveau conteneur cette fois associé à notre
 ```bash
 docker run -it --rm --network exercice1_network postgres psql -h db -U postgres -c "SELECT NOW()"
 ```
+
+## Exercice 2 - Dind
+
+### Enoncé
+
+Dind => Docker In Docker
+
+Utiliser l'image `docker:dind` pour créer un conteneur capable de fournir un démon docker à d'autres conteneurs.
+
+Utiliser l'image `docker:latest` pour créer un conteneur faisant office de client pour le démon docker créé précédemment.
+
+Consulter la [documentation officielle](https://hub.docker.com/_/docker) pour plus de détails sur les commandes à utiliser.
+
+![](./images/exercice2.png)
+
+Une fois cette architecture en place, utiliser la pour recréer les conteneurs de l'exercice 1.
+
+### Solution
+
+Résultat attendu de la machine hôte
+
+```bash
+docker ps
+# => 2 containers: daemon and docker client
+```
+
+Résultat attendu du client docker
+
+```bash
+docker ps
+# => 1 container: postgres db and 1 temporary container client db
+``` 
