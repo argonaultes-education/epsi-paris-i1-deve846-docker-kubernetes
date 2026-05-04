@@ -242,3 +242,137 @@ Contraintes :
 Aide : préparer la [configuration nginx](https://hub.docker.com/_/nginx#customize-configuration) en amont et utiliser le bind-mounting
 
 Etapes à suivre
+
+1. Créer un sous-réseau `exercice3_network` de type `bridge`
+
+```bash
+docker network create exercice3_network
+```
+
+2. Créer un volume nommé `pgdata` destiné à sauvegarder l'état des fichiers sur disque de la base de données
+
+```bash
+docker volume create pgdata
+```
+
+3. Créer le conteneur de base de données `postgres` utilisant le volume nommé `pgdata` avec l'alias DNS `db`.
+
+```bash
+docker run --name postgres --network exercice3_network --network-alias db -v pgdata:/var/lib/postgresql/18/docker -e POSTGRES_PASSWORD=password -d postgres:latest
+```
+
+
+4. Récupérer la configuration initiale du serveur nginx
+
+```bash
+docker run --rm --entrypoint=cat nginx:latest /etc/nginx/nginx.conf > ./exercice3/nginx.conf
+```
+
+Pour vérifier le port d'écoute déjà configuré, démarrer un shell en interactif
+
+```bash
+docker run --rm -it --entrypoint=bash nginx:latest
+```
+
+Alternative si l'entrypoint n'a pas été défini au niveau de l'image
+
+```bash
+docker run --rm -it nginx:latest bash
+```
+
+
+5. Modifier cette configuration pour ajouter le support du streaming
+
+Ajouter la configuration suivante au fichier nginx.conf
+
+```
+stream {
+
+    # green
+    upstream database {
+       server db:5432;
+    }
+
+    # purple
+    server {
+        listen 80;
+        proxy_connect_timeout 1s;
+        proxy_timeout 3s;
+        proxy_pass database;
+    }
+}
+```
+
+
+6. Créer le conteneur `nginx` avec le bind-mounting activé sur le fichier `nginx.conf` avec l'alias DNS `front`
+
+```bash
+docker run --name front --network exercice3_network --network-alias front -p 8080:80 -v ./exercice3/nginx.conf:/etc/nginx/nginx.conf:ro -d nginx:latest
+```
+
+7. Créer le conteneur temporaire client de base de données `psql`
+
+```bash
+docker run --rm -it --network exercice3_network postgres:latest psql -h front -p 80 -U postgres
+```
+
+
+
+#### Tests
+
+Vérifier le bon fonctionnement du volume pgdata.
+
+Se connecter à l'instance postgres avec le client psql local
+
+```bash
+docker exec -it -u postgres postgres psql
+```
+
+Créer une table et insérer une ligne
+
+```sql
+create table test_volume(id serial primary key, created_at timestamp default now());
+insert into test_volume default values;
+select * from test_volume;
+```
+
+Supprimer le conteneur
+
+```bash
+docker stop postgres
+docker rm postgres
+```
+
+Recréer le conteneur avec le même volume
+
+
+```bash
+docker run --name postgres --network exercice3_network --network-alias db -v pgdata:/var/lib/postgresql/18/docker -d postgres:latest
+```
+
+Vérifier que la table est toujours présente avec la ligne de données
+
+
+```bash
+docker exec -it -u postgres postgres psql
+```
+
+```sql
+select * from test_volume;
+```
+
+Vérifier que le fichier nginx.conf est bien pris en compte par le processus nginx dans le nouveau conteneur
+
+```bash
+docker exec front cat /etc/nginx/nginx.conf
+```
+
+Une fois les tests terminés, supprimer les conteneurs, les volumes et les réseaux.
+
+
+```bash
+docker stop postgres front
+docker rm postgres front
+docker volume rm pgdata
+docker network rm exercice3_network
+```
