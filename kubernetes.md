@@ -159,7 +159,11 @@ Reprendre l'architecture de l'exerice 3 du TP sur Docker et la déployer sur un 
 Plutôt que d'utiliser la méthode impérative, utiliser la méthode déclarative et stocker tous les fichiers au format YAML dans le dossier `exercice3_kubernetes`.
 
 
+Pour appliquer un fichier Yaml
 
+```bash
+kubectl apply -f exercice3_kubernetes/postgres_pod.yaml
+```
 
 ## Fin
 
