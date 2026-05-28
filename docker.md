@@ -104,7 +104,7 @@ docker network connect exercice1_network exercice1 --alias db
 Relancer la commande psql dans un nouveau conteneur cette fois associé à notre nouveau réseau
 
 ```bash
-docker run -it --rm --network exercice1_network postgres psql -h db -U postgres -c "SELECT NOW()"
+docker run -it --rm --network exercice1_network postgres:latest psql -h db -U postgres -c "SELECT NOW()"
 ```
 
 ## Exercice 2 - Dind
