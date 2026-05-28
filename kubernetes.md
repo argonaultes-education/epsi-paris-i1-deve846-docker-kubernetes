@@ -105,6 +105,12 @@ kubectl delete pod/nginx
 
 ## Exercice 3 - Créer un pod dont le conteneur s'éteind au bout de x secondes
 
+Choisir l'image de votre choix `debian:latest`, éventuellement créer votre propre image ou bien lancer une commande au démarrage.
+
+```bash
+#TODO
+```
+
 ## Exercice 4 - Self-Healing avec les déploiements
 
 Créer maintenant une ressource de type déploiement
