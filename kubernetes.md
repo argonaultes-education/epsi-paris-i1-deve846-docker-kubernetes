@@ -150,6 +150,17 @@ Etant donné qu'on utilise minikube, il faut également ouvrir un port sur la ma
 minikube service $nom_du_service
 ```
 
+## Exercice 6
+
+Reprendre l'architecture de l'exerice 3 du TP sur Docker et la déployer sur un cluster kubernetes en utilisant, déploiements, pods, et services.
+
+![](./images/kubernetes.drawio.png)
+
+Plutôt que d'utiliser la méthode impérative, utiliser la méthode déclarative et stocker tous les fichiers au format YAML dans le dossier `exercice3_kubernetes`.
+
+
+
+
 ## Fin
 
 Arrêter minikube et détruire les ressources associées
