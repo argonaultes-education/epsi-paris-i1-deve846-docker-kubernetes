@@ -108,7 +108,18 @@ kubectl delete pod/nginx
 Choisir l'image de votre choix `debian:latest`, éventuellement créer votre propre image ou bien lancer une commande au démarrage.
 
 ```bash
-#TODO
+kubectl run testsleep --image=debian:latest -- sleep 5
+```
+
+Résultat attendu
+
+```bash
+kubectl get pods
+```
+
+```bash
+NAME        READY   STATUS      RESTARTS      AGE
+testsleep   0/1     Completed   3 (55s ago)   92s
 ```
 
 ## Exercice 4 - Self-Healing avec les déploiements
@@ -124,6 +135,11 @@ Faire varirer le nombre de pods associés à ce déploiement
 ```bash
 kubectl scale deployment/nginx --replicas=2
 ```
+
+## Exercice 5 - Rendre accessible le conteneur depuis l'exterieur du cluster
+
+
+
 
 ## Fin
 
