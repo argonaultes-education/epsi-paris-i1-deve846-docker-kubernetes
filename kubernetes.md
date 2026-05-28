@@ -138,8 +138,17 @@ kubectl scale deployment/nginx --replicas=2
 
 ## Exercice 5 - Rendre accessible le conteneur depuis l'exterieur du cluster
 
+Utilisation d'une nouvelle ressource : le `service` de type `NodePort`.
 
+```bash
+kubectl expose pod/epsiparis --port=80 --type=NodePort
+```
 
+Etant donné qu'on utilise minikube, il faut également ouvrir un port sur la machine hôte du conteneur minikube pour accéder à ce service.
+
+```bash
+minikube service $nom_du_service
+```
 
 ## Fin
 
